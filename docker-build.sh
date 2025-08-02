@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo "========================================"
+echo "کلینیک محمدی - راه‌اندازی Docker"
+echo "========================================"
+
+echo ""
+echo "بررسی Docker..."
+
+if ! command -v docker &> /dev/null; then
+    echo "خطا: Docker نصب نیست!"
+    echo "لطفاً Docker را نصب کنید:"
+    echo "https://docs.docker.com/engine/install/"
+    exit 1
+fi
+
+if ! command -v docker-compose &> /dev/null; then
+    echo "خطا: Docker Compose نصب نیست!"
+    echo "لطفاً Docker Compose را نصب کنید:"
+    echo "sudo apt-get install docker-compose"
+    exit 1
+fi
+
+echo "Docker موجود است."
+echo ""
+
+echo "ساخت و اجرای کانتینرها..."
+docker-compose up --build
+
+echo ""
+echo "========================================"
+echo "راه‌اندازی کامل شد!"
+echo "========================================"
+echo ""
+echo "دسترسی‌ها:"
+echo "- وبسایت: http://localhost"
+echo "- پنل ادمین: http://localhost/admin"
+echo "  نام کاربری: admin"
+echo "  رمز عبور: admin123"
+echo "" 

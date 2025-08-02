@@ -77,13 +77,37 @@ npm start
 
 ## 🐳 راه‌اندازی با Docker
 
-### 1. ساخت و اجرای کانتینرها
+### Windows
 ```bash
-# ساخت و اجرای تمام سرویس‌ها
-docker-compose up --build
+# راه‌اندازی آسان
+docker-build.bat
 
-# اجرا در پس‌زمینه
-docker-compose up -d --build
+# توقف سرویس‌ها
+docker-stop.bat
+
+# مشاهده لاگ‌ها
+docker-logs.bat
+```
+
+### Linux
+```bash
+# تنظیم مجوزهای اجرا
+chmod +x *.sh
+
+# راه‌اندازی آسان
+./docker-build.sh
+
+# توقف سرویس‌ها
+./docker-stop.sh
+
+# مشاهده لاگ‌ها
+./docker-logs.sh
+
+# نصب و راه‌اندازی کامل
+./install-linux.sh
+
+# راه‌اندازی سرور
+sudo ./setup-server.sh
 ```
 
 ### 2. مشاهده لاگ‌ها
@@ -203,6 +227,41 @@ npm test
 
 # بررسی خطاهای ESLint
 npm run lint
+```
+
+### دستورات مفید Docker
+
+#### Windows
+```bash
+# راه‌اندازی
+docker-build.bat
+
+# توقف
+docker-stop.bat
+
+# مشاهده لاگ‌ها
+docker-logs.bat
+```
+
+#### Linux
+```bash
+# راه‌اندازی
+./docker-build.sh
+
+# توقف
+./docker-stop.sh
+
+# مشاهده لاگ‌ها
+./docker-logs.sh
+
+# Backup
+./backup.sh
+
+# Restore
+./restore.sh
+
+# Monitoring
+./monitor.sh
 ```
 
 ## 🎨 ویژگی‌های طراحی

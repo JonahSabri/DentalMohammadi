@@ -1,0 +1,16 @@
+[Unit]
+Description=Clinic Mohammadi Dental Clinic
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/clinic-mohammadi
+ExecStart=/opt/clinic-mohammadi/docker-build.sh
+ExecStop=/opt/clinic-mohammadi/docker-stop.sh
+User=clinic
+Group=clinic
+
+[Install]
+WantedBy=multi-user.target 
