@@ -6,6 +6,7 @@ echo "========================================"
 
 echo ""
 echo "توقف کانتینرها..."
+docker-compose -f docker-compose-simple.yml down
 docker-compose down
 
 echo ""

@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.7'
 
 services:
   backend:
@@ -15,12 +15,6 @@ services:
       - media_volume:/app/media
     networks:
       - clinic-network
-    healthcheck:
-      test: ["CMD-SHELL", "python -c 'import requests; requests.get(\"http://localhost:8000/admin/\")'"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
 
   frontend:
     build:
@@ -34,11 +28,6 @@ services:
       - backend
     networks:
       - clinic-network
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
 volumes:
   static_volume:
