@@ -22,16 +22,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project
 COPY . .
 
-# Make startup script executable
-RUN chmod +x docker-start.sh
+# Make scripts executable
+RUN chmod +x docker-start.sh entrypoint.sh
 
 # Create a non-root user
 RUN adduser --disabled-password --gecos '' appuser
 RUN chown -R appuser:appuser /app
-USER appuser
 
 # Expose port
 EXPOSE 8000
 
-# Run startup script and then the application
-CMD ["./docker-start.sh && gunicorn", "--bind", "0.0.0.0:8000", "dental_clinic.wsgi:application"] 
+USER appuser
+
+# Run entrypoint script
+CMD ["/app/entrypoint.sh"] 
