@@ -25,8 +25,10 @@ echo "Docker موجود است."
 echo ""
 
 echo "ساخت و اجرای کانتینرها..."
-# Try the simple version first
-if docker-compose -f docker-compose-simple.yml up --build; then
+# Try the minimal version first
+if docker-compose -f docker-compose-minimal.yml up --build; then
+    echo "راه‌اندازی با فایل minimal موفق بود!"
+elif docker-compose -f docker-compose-simple.yml up --build; then
     echo "راه‌اندازی با فایل ساده موفق بود!"
 else
     echo "تلاش با فایل اصلی..."

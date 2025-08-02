@@ -18,11 +18,15 @@ echo Docker موجود است.
 echo.
 
 echo ساخت و اجرای کانتینرها...
-echo تلاش با فایل ساده...
-docker-compose -f docker-compose-simple.yml up --build
+echo تلاش با فایل minimal...
+docker-compose -f docker-compose-minimal.yml up --build
 if %errorlevel% neq 0 (
-    echo تلاش با فایل اصلی...
-    docker-compose up --build
+    echo تلاش با فایل ساده...
+    docker-compose -f docker-compose-simple.yml up --build
+    if %errorlevel% neq 0 (
+        echo تلاش با فایل اصلی...
+        docker-compose up --build
+    )
 )
 
 echo.
