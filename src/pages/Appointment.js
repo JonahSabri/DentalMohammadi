@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fa';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { fetchApiData } from '../utils/apiHelpers';
 import './Appointment.css';
 
 const Appointment = () => {
@@ -45,33 +46,28 @@ const Appointment = () => {
   }, [formData.doctorId, formData.appointmentDate]);
 
   const fetchDoctors = async () => {
-    try {
-      const response = await fetch('/api/doctors/');
-      const data = await response.json();
-      setDoctors(data);
-    } catch (error) {
-      console.error('Error fetching doctors:', error);
-    }
+    const data = await fetchApiData('/api/doctors/');
+    setDoctors(data);
   };
 
   const fetchServices = async () => {
-    try {
-      const response = await fetch('/api/services/');
-      const data = await response.json();
-      setServices(data);
-    } catch (error) {
-      console.error('Error fetching services:', error);
-    }
+    const data = await fetchApiData('/api/services/');
+    setServices(data);
   };
 
   const fetchAvailableTimes = async () => {
     try {
       const dateStr = formData.appointmentDate.toISOString().split('T')[0];
       const response = await fetch(`/api/appointments/available_times/?doctor_id=${formData.doctorId}&date=${dateStr}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-      setAvailableTimes(data.available_times || []);
+      const timesArray = Array.isArray(data.available_times) ? data.available_times : [];
+      setAvailableTimes(timesArray);
     } catch (error) {
       console.error('Error fetching available times:', error);
+      setAvailableTimes([]);
     }
   };
 
@@ -246,7 +242,7 @@ const Appointment = () => {
                       required
                     >
                       <option value="">پزشک مورد نظر را انتخاب کنید</option>
-                      {doctors.map(doctor => (
+                      {Array.isArray(doctors) && doctors.map(doctor => (
                         <option key={doctor.id} value={doctor.id}>
                           {doctor.full_name} - {doctor.specialization_display}
                         </option>
@@ -281,7 +277,7 @@ const Appointment = () => {
                     required
                   >
                     <option value="">خدمات مورد نظر را انتخاب کنید</option>
-                    {services.map(service => (
+                    {Array.isArray(services) && services.map(service => (
                       <option key={service.id} value={service.id}>
                         {service.name} - {service.price} تومان
                       </option>
@@ -319,7 +315,7 @@ const Appointment = () => {
                       disabled={!formData.appointmentDate}
                     >
                       <option value="">ساعت را انتخاب کنید</option>
-                      {availableTimes.map(time => (
+                      {Array.isArray(availableTimes) && availableTimes.map(time => (
                         <option key={time} value={time}>
                           {time}
                         </option>
@@ -396,15 +392,15 @@ const Appointment = () => {
               <div className="contact-info">
                 <div className="contact-item">
                   <FaPhone />
-                  <span>021-12345678</span>
+                  <span>09363381066</span>
                 </div>
                 <div className="contact-item">
                   <FaEnvelope />
-                  <span>info@dentalclinic.com</span>
+                  <span>info@clinic-mohammadi.com</span>
                 </div>
                 <div className="contact-item">
                   <FaMapMarkerAlt />
-                  <span>تهران، خیابان ولیعصر</span>
+                  <span>تهران، نسیم شهر، خیابان اصلی</span>
                 </div>
               </div>
             </div>

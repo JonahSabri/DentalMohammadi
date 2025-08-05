@@ -5,10 +5,10 @@ import {
   FaCalendarAlt, 
   FaTooth, 
   FaUsers,
-  FaChartBar,
   FaCog,
-  FaSignOutAlt
+  FaChartBar
 } from 'react-icons/fa';
+import { fetchApiData } from '../utils/apiHelpers';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
@@ -26,17 +26,12 @@ const AdminPanel = () => {
 
   const fetchStats = async () => {
     try {
-      const [doctorsRes, appointmentsRes, servicesRes, patientsRes] = await Promise.all([
-        fetch('/api/doctors/'),
-        fetch('/api/appointments/'),
-        fetch('/api/services/'),
-        fetch('/api/patients/')
+      const [doctors, appointments, services, patients] = await Promise.all([
+        fetchApiData('/api/doctors/'),
+        fetchApiData('/api/appointments/'),
+        fetchApiData('/api/services/'),
+        fetchApiData('/api/patients/')
       ]);
-
-      const doctors = await doctorsRes.json();
-      const appointments = await appointmentsRes.json();
-      const services = await servicesRes.json();
-      const patients = await patientsRes.json();
 
       setStats({
         doctors: doctors.length,

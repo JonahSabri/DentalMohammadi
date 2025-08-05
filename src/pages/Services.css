@@ -114,6 +114,43 @@
   font-size: 1.1rem;
 }
 
+.error-message {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+.error-message h2 {
+  color: #e74c3c;
+  margin-bottom: 1rem;
+}
+
+.error-message p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.no-services {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+.no-services h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.no-services p {
+  color: #666;
+}
+
 .service-features {
   margin-bottom: 1.5rem;
   padding: 1rem;

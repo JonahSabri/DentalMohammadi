@@ -257,8 +257,8 @@ const Contact = () => {
           <div className="emergency-card">
             <h3>اورژانس دندانپزشکی</h3>
             <p>برای موارد اورژانس در ساعات غیر کاری با شماره زیر تماس بگیرید:</p>
-            <a href="tel:09123456789" className="emergency-phone">
-              <FaPhone /> 09123456789
+            <a href="tel:09363381066" className="emergency-phone">
+              <FaPhone /> 09363381066
             </a>
           </div>
         </motion.div>
